@@ -1,0 +1,16 @@
+Pre Requisite: 
+	Running Kali lunix and Metaspliotable 2 machines.
+Steps to follow: 
+
+	1. Type Metasploitable machine's ip address in the web browser and navigate to Mutillidae > "OWASP Top 10" > "A1 - Injection" > "Sqli - Extract data" > "User info". A website page with authentication form will appear.
+	2. Turn on Burp Suite and turn intercept on to catch any request, also change the network proxy settings for browser to use Burp Suite's proxy settings.
+	3. Enter a random username and password in the authentication from and press login, this request will be captured by Burp Suite. Save the captured request in a text file on Desktop as "burpsuiteIntercept". 
+	4. Open terminal and excute following sqlmap command. 
+		sqlmap -r ~/Desktop/burpsuiteIntercept --dbs
+		This command will start the attack. The fetched data is logged to text file under "initial_logs"
+	5. Execute the follwing command to get information about the databse, 
+		sqlmap -r ~/Desktop/burpsuiteIntercept -D test --tables
+	6. After the tables are found write the following command to get the data of the table. 
+		sqlmap -r ~/Desktop/burpsuiteIntercept -D test -T <table_name> --dump
+		This command wil extract all the inforamtion stored in that table. 
+
