@@ -1,0 +1,5 @@
+# Environment 
+env
+
+# Public and private keys for RSA
+keys/
